@@ -39,7 +39,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
           height: 30,
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation:
+          FloatingActionButtonLocation.miniCenterDocked,
       bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           selectedItemColor: const Color.fromARGB(223, 243, 60, 60),
