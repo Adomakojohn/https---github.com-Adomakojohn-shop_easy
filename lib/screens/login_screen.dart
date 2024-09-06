@@ -1,6 +1,4 @@
-import 'dart:ui';
-
-import 'package:ecommerce_project/screens/bottom_nav_screen.dart';
+import 'package:ecommerce_project/widgets/containers.dart';
 import 'package:flutter/material.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -52,7 +50,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         borderSide: BorderSide(color: Colors.pinkAccent)),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.pinkAccent)),
+                        borderSide: BorderSide(color: Colors.grey)),
                   ),
                 ),
                 const SizedBox(
@@ -75,7 +73,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         borderSide: BorderSide(color: Colors.pinkAccent)),
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.pinkAccent)),
+                        borderSide: BorderSide(color: Colors.grey)),
                   ),
                 ),
                 const SizedBox(
@@ -87,8 +85,8 @@ class _LogInScreenState extends State<LogInScreen> {
                         Navigator.pushNamed(context, 'bottomnavscreen'),
                     child: Container(
                       alignment: Alignment.center,
-                      height: 65,
-                      width: 140,
+                      height: 75,
+                      width: double.infinity,
                       decoration: const BoxDecoration(
                           color: Colors.pink,
                           borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -102,65 +100,68 @@ class _LogInScreenState extends State<LogInScreen> {
                               left: BorderSide(
                                   color: Colors.pinkAccent, width: 2))),
                       child: const Text(
-                        "Log In",
+                        "Login",
                         style: TextStyle(fontSize: 25, color: Colors.white),
                       ),
                     ),
                   ),
                 ),
                 const SizedBox(
-                  height: 60,
+                  height: 30,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 65,
-                      width: 100,
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 251, 248, 248),
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                          border: Border(
-                              bottom: BorderSide(color: Colors.pinkAccent),
-                              top: BorderSide(color: Colors.pinkAccent),
-                              right: BorderSide(color: Colors.pinkAccent),
-                              left: BorderSide(color: Colors.pinkAccent))),
+                    Expanded(
+                      child: Divider(
+                        color: Colors.grey[900],
+                        height: 2,
+                        indent: 108,
+                        endIndent: 8,
+                      ),
                     ),
-                    Container(
-                      height: 65,
-                      width: 100,
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 251, 248, 248),
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                          border: Border(
-                              bottom: BorderSide(color: Colors.pinkAccent),
-                              top: BorderSide(color: Colors.pinkAccent),
-                              right: BorderSide(color: Colors.pinkAccent),
-                              left: BorderSide(color: Colors.pinkAccent))),
-                    ),
-                    Container(
-                      height: 65,
-                      width: 100,
-                      decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 251, 248, 248),
-                          borderRadius: BorderRadius.all(Radius.circular(12)),
-                          border: Border(
-                              bottom: BorderSide(color: Colors.pinkAccent),
-                              top: BorderSide(color: Colors.pinkAccent),
-                              right: BorderSide(color: Colors.pinkAccent),
-                              left: BorderSide(color: Colors.pinkAccent))),
+                    const Text("or continue with"),
+                    Expanded(
+                      child: Divider(
+                        color: Colors.grey[900],
+                        height: 2,
+                        indent: 8,
+                        endIndent: 108,
+                      ),
                     ),
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 25,
                 ),
                 const Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    MyContainer(
+                      containerImage: "assets/images/google_image.png",
+                    ),
+                    SizedBox(
+                      width: 25,
+                    ),
+                    MyContainer(
+                      containerImage: "assets/images/google_image.png",
+                    ),
+                    SizedBox(
+                      width: 25,
+                    ),
+                    MyContainer(
+                      containerImage: "assets/images/google_image.png",
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       "Have an account ? ",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 17),
                     ),
                     Text(
                       "Sign Up",
