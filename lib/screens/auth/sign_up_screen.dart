@@ -1,14 +1,14 @@
 import 'package:ecommerce_project/widgets/containers.dart';
 import 'package:flutter/material.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,21 +21,21 @@ class _LogInScreenState extends State<LogInScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "Welcome",
+                  "Create an",
                   style: TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const Text(
-                  "Back!",
+                  "Account",
                   style: TextStyle(
                     fontSize: 48,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 const SizedBox(
-                  height: 55,
+                  height: 30,
                 ),
                 TextFormField(
                   decoration: const InputDecoration(
@@ -54,7 +54,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 26,
+                  height: 24,
                 ),
                 TextFormField(
                   obscureText: true,
@@ -63,9 +63,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     suffixIcon: Icon(Icons.remove_red_eye_outlined),
                     hintText: 'enter password',
                     contentPadding: EdgeInsets.all(20),
-                    helperText: 'Forgot Password ?',
                     hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                    helperStyle: TextStyle(fontSize: 14),
                     filled: true,
                     fillColor: Color.fromARGB(255, 251, 248, 248),
                     focusedBorder: OutlineInputBorder(
@@ -77,7 +75,38 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 35,
+                  height: 24,
+                ),
+                TextFormField(
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.lock_rounded),
+                    suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                    hintText: 'confirm password',
+                    contentPadding: EdgeInsets.all(20),
+                    hintStyle: TextStyle(fontStyle: FontStyle.italic),
+                    filled: true,
+                    fillColor: Color.fromARGB(255, 251, 248, 248),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        borderSide: BorderSide(color: Colors.pinkAccent)),
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(12)),
+                        borderSide: BorderSide(color: Colors.grey)),
+                  ),
+                ),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Text(' By clicking on create account you agree to the'),
+                GestureDetector(
+                  child: const Text(
+                    ' privacy rules ',
+                    style: TextStyle(color: Colors.pinkAccent),
+                  ),
+                ),
+                const SizedBox(
+                  height: 25,
                 ),
                 Center(
                   child: GestureDetector(
@@ -100,7 +129,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               left: BorderSide(
                                   color: Colors.pinkAccent, width: 2))),
                       child: const Text(
-                        "Login",
+                        "Create Account",
                         style: TextStyle(fontSize: 25, color: Colors.white),
                       ),
                     ),
@@ -143,29 +172,33 @@ class _LogInScreenState extends State<LogInScreen> {
                       width: 25,
                     ),
                     MyContainer(
-                      containerImage: "assets/images/google_image.png",
+                      containerImage: "assets/images/apple.png",
                     ),
                     SizedBox(
                       width: 25,
                     ),
                     MyContainer(
-                      containerImage: "assets/images/google_image.png",
+                      containerImage: "assets/images/facebook.png",
                     ),
                   ],
                 ),
                 const SizedBox(
                   height: 25,
                 ),
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      "Have an account ? ",
+                    const Text(
+                      "I already have an account ? ",
                       style: TextStyle(fontSize: 17),
                     ),
-                    Text(
-                      "Sign Up",
-                      style: TextStyle(color: Colors.pinkAccent, fontSize: 20),
+                    GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, 'signupscreen'),
+                      child: const Text(
+                        "Log in",
+                        style:
+                            TextStyle(color: Colors.pinkAccent, fontSize: 20),
+                      ),
                     )
                   ],
                 )
