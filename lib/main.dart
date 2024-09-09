@@ -6,13 +6,15 @@ import 'package:ecommerce_project/Presentation/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_project/Presentation/screens/home_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'firebase_options.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await dotenv.load(fileName: ".env");
   runApp(DevicePreview(
     builder: (context) => const MyApp(),
   ));

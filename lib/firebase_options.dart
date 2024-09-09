@@ -83,5 +83,4 @@ class DefaultFirebaseOptions {
     authDomain: 'shopeasy-4bddf.firebaseapp.com',
     storageBucket: 'shopeasy-4bddf.appspot.com',
   );
-
 }
