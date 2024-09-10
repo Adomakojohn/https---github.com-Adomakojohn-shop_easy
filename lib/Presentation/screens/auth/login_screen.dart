@@ -1,4 +1,6 @@
 import 'package:ecommerce_project/Presentation/widgets/containers.dart';
+import 'package:ecommerce_project/Presentation/widgets/my_textfields.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -9,6 +11,14 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  final usernameController = TextEditingController();
+
+  final passwordController = TextEditingController();
+  void signUserIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: usernameController.text, password: passwordController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +48,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   height: 55,
                 ),
                 TextFormField(
+                  controller: usernameController,
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person_4_rounded),
                     hintText: 'Username or Email',
@@ -59,24 +70,12 @@ class _LogInScreenState extends State<LogInScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.lock_rounded),
-                        suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                    MyTextfield(
+                        suffixIcon: const Icon(Icons.remove_red_eye_outlined),
+                        prefixIcon: const Icon(Icons.lock),
+                        controller: passwordController,
                         hintText: 'enter password',
-                        contentPadding: EdgeInsets.all(20),
-                        hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 251, 248, 248),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                            borderSide: BorderSide(color: Colors.pinkAccent)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                            borderSide: BorderSide(color: Colors.grey)),
-                      ),
-                    ),
+                        obscureText: false),
                     GestureDetector(
                       child: const Text(
                         "Forgot password ?",
@@ -90,8 +89,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 Center(
                   child: GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, 'bottomnavscreen'),
+                    onTap: signUserIn,
                     child: Container(
                       alignment: Alignment.center,
                       height: 75,

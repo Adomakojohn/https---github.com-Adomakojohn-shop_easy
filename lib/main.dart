@@ -1,4 +1,6 @@
 import 'package:device_preview/device_preview.dart';
+import 'package:ecommerce_project/Presentation/screens/auth/auth_page.dart';
+import 'package:ecommerce_project/Presentation/screens/auth/login_screen.dart';
 import 'package:ecommerce_project/Presentation/screens/auth/sign_up_screen.dart';
 import 'package:ecommerce_project/Presentation/screens/bottom_nav_screen.dart';
 import 'package:ecommerce_project/Presentation/screens/products_page.dart';
@@ -26,13 +28,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const SignUpScreen(),
+      home: const AuthPage(),
       routes: {
         'homescreen': (context) => const HomeScreen(),
         'settingscreen': (context) => const SettingsScreen(),
         'bottomnavscreen': (context) => const BottomNavBar(),
-        'signupscreen': (context) => const SignUpScreen(),
+        'signupscreen': (context) => SignUpScreen(),
         'productspage': (context) => const ProductsPage(),
+        'loginscreen': (context) => const LogInScreen()
       },
     );
   }
