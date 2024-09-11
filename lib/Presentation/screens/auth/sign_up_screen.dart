@@ -3,17 +3,50 @@ import 'package:ecommerce_project/Presentation/widgets/my_textfields.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   SignUpScreen({super.key});
 
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  void Function()? ontap;
   final usernameController = TextEditingController();
 
   final passwordController = TextEditingController();
+
   final confirmPasswordController = TextEditingController();
 
-  void signUserIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: usernameController.text, password: passwordController.text);
+  void signUserUp() async {
+    void errorAlert(errormessage) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Center(child: Text(errormessage)),
+            elevation: 20,
+          );
+        },
+      );
+    }
+
+    try {
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: usernameController.text, password: passwordController.text);
+      } else {
+        errorAlert('Passwords are not the same');
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        errorAlert(e.code);
+      } else {
+        if (e.code == 'wrong-password') {
+          errorAlert(e.code);
+        }
+      }
+    }
   }
 
   @override
@@ -70,7 +103,7 @@ class SignUpScreen extends StatelessWidget {
                     prefixIcon: const Icon(Icons.lock),
                     controller: passwordController,
                     hintText: 'enter password',
-                    obscureText: true),
+                    obscureText: false),
                 const SizedBox(
                   height: 24,
                 ),
@@ -79,7 +112,7 @@ class SignUpScreen extends StatelessWidget {
                     prefixIcon: const Icon(Icons.lock),
                     controller: confirmPasswordController,
                     hintText: 'confirm password',
-                    obscureText: true),
+                    obscureText: false),
                 const SizedBox(
                   height: 15,
                 ),
@@ -95,7 +128,7 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 Center(
                   child: GestureDetector(
-                    onTap: () => signUserIn,
+                    onTap: signUserUp,
                     child: Container(
                       alignment: Alignment.center,
                       height: 75,

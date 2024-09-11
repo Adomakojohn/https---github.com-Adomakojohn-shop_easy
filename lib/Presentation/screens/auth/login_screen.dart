@@ -12,11 +12,33 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   final usernameController = TextEditingController();
-
   final passwordController = TextEditingController();
+
   void signUserIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: usernameController.text, password: passwordController.text);
+    void errorAlert(errormessage) {
+      showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Center(child: Text(errormessage)),
+            elevation: 20,
+          );
+        },
+      );
+    }
+
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: usernameController.text, password: passwordController.text);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        errorAlert(e.code);
+      } else {
+        if (e.code == 'wrong-password') {
+          errorAlert(e.code);
+        }
+      }
+    }
   }
 
   @override
