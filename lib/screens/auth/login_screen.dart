@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/widgets/containers.dart';
+import 'package:ecommerce_project/widgets/mytextfield.dart';
 import 'package:flutter/material.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -9,6 +10,8 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,46 +40,28 @@ class _LogInScreenState extends State<LogInScreen> {
                 const SizedBox(
                   height: 55,
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.person_4_rounded),
-                    hintText: 'Username or Email',
-                    hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                    contentPadding: EdgeInsets.all(20),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 251, 248, 248),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.pinkAccent)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.grey)),
-                  ),
-                ),
+                MyTextfield(
+                    keyboardtype: TextInputType.emailAddress,
+                    autoCorrect: true,
+                    enablesuggestions: true,
+                    controller: emailcontroller,
+                    hintText: 'enter username or email',
+                    prefixIcon: const Icon(Icons.person_4),
+                    obscureText: false),
                 const SizedBox(
                   height: 26,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    TextFormField(
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(Icons.lock_rounded),
-                        suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                    MyTextfield(
+                        autoCorrect: false,
+                        enablesuggestions: false,
+                        controller: passwordcontroller,
                         hintText: 'enter password',
-                        contentPadding: EdgeInsets.all(20),
-                        hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                        filled: true,
-                        fillColor: Color.fromARGB(255, 251, 248, 248),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                            borderSide: BorderSide(color: Colors.pinkAccent)),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(12)),
-                            borderSide: BorderSide(color: Colors.grey)),
-                      ),
-                    ),
+                        prefixIcon: const Icon(Icons.lock_rounded),
+                        suffixIcon: const Icon(Icons.remove_red_eye),
+                        obscureText: true),
                     GestureDetector(
                       child: const Text(
                         "Forgot password ?",

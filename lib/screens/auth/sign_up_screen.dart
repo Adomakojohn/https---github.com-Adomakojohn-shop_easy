@@ -1,6 +1,8 @@
 import 'package:ecommerce_project/widgets/containers.dart';
 import 'package:flutter/material.dart';
 
+import '../../widgets/mytextfield.dart';
+
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -56,45 +58,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 24,
                 ),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.lock_rounded),
-                    suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                const MyTextfield(
+                    autoCorrect: false,
+                    enablesuggestions: false,
                     hintText: 'enter password',
-                    contentPadding: EdgeInsets.all(20),
-                    hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 251, 248, 248),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.pinkAccent)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.grey)),
-                  ),
-                ),
+                    prefixIcon: Icon(Icons.lock_rounded),
+                    suffixIcon: Icon(Icons.remove_red_eye),
+                    obscureText: true),
                 const SizedBox(
                   height: 24,
                 ),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.lock_rounded),
-                    suffixIcon: Icon(Icons.remove_red_eye_outlined),
+                const MyTextfield(
+                    autoCorrect: false,
+                    enablesuggestions: false,
                     hintText: 'confirm password',
-                    contentPadding: EdgeInsets.all(20),
-                    hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 251, 248, 248),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.pinkAccent)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.grey)),
-                  ),
-                ),
+                    prefixIcon: (child: Icon(Icons.lock_rounded)),
+                    suffixIcon: Icon(Icons.remove_red_eye),
+                    obscureText: true),
                 const SizedBox(
                   height: 15,
                 ),

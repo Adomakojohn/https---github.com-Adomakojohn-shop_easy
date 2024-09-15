@@ -31,3 +31,36 @@ class _MyContainerState extends State<MyContainer> {
     );
   }
 }
+
+class ShoeSizeContainer extends StatefulWidget {
+  final String containerText;
+  const ShoeSizeContainer({super.key, required this.containerText});
+
+  @override
+  State<ShoeSizeContainer> createState() => _ShoeSizeContainerState();
+}
+
+class _ShoeSizeContainerState extends State<ShoeSizeContainer> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 55,
+      width: 80,
+      decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.all(Radius.circular(11)),
+          border: Border(
+              bottom: BorderSide(color: Colors.pinkAccent),
+              top: BorderSide(color: Colors.pinkAccent),
+              right: BorderSide(color: Colors.pinkAccent),
+              left: BorderSide(color: Colors.pinkAccent))),
+      child: Padding(
+          padding: const EdgeInsets.all(7),
+          child: Center(
+              child: Text(
+            widget.containerText,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+          ))),
+    );
+  }
+}

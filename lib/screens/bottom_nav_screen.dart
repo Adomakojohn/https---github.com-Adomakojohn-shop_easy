@@ -1,4 +1,5 @@
 import 'package:ecommerce_project/screens/home_screen.dart';
+import 'package:ecommerce_project/screens/product_details.page.dart';
 import 'package:ecommerce_project/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const SettingsScreen(),
+    const ProductDetailsPage(),
     const SettingsScreen(),
     const SettingsScreen(),
     const SettingsScreen(),
