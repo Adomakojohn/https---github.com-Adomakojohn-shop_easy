@@ -379,41 +379,48 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(5.0),
-                        child: Container(
-                          alignment: Alignment.topCenter,
-                          height: 250,
-                          width: 250,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25))),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              ClipRRect(
-                                  borderRadius: BorderRadius.circular(16),
-                                  child: Image(
-                                    image: AssetImage(
-                                      deals[index].imagePath,
-                                    ),
-                                  )),
-                              Text(
-                                deals[index].itemName,
-                                style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w600),
-                              ),
-                              Text(deals[index].itemInfo),
-                              Text(
-                                deals[index].itemPrice,
-                                style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.w500),
-                              ),
-                              Text(deals[index].itemRating),
-                              const SizedBox(
-                                height: 9,
-                              )
-                            ],
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, 'productdetailspage');
+                          },
+                          child: Container(
+                            alignment: Alignment.topCenter,
+                            height: 250,
+                            width: 250,
+                            decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(25))),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ClipRRect(
+                                    borderRadius: BorderRadius.circular(16),
+                                    child: Image(
+                                      image: AssetImage(
+                                        deals[index].imagePath,
+                                      ),
+                                    )),
+                                Text(
+                                  deals[index].itemName,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                                Text(deals[index].itemInfo),
+                                Text(
+                                  deals[index].itemPrice,
+                                  style: const TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                Text(deals[index].itemRating),
+                                const SizedBox(
+                                  height: 9,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       );
