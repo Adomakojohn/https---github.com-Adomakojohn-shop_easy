@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MyTextfield extends StatelessWidget {
   final keyboardtype;
   final String hintText;
-  final dynamic prefixIcon;
+  final prefixIcon;
   final dynamic suffixIcon;
   final bool obscureText;
   final bool enablesuggestions;
@@ -14,7 +14,7 @@ class MyTextfield extends StatelessWidget {
       {super.key,
       required this.hintText,
       this.keyboardtype,
-      required this.prefixIcon,
+      this.prefixIcon,
       this.suffixIcon,
       required this.autoCorrect,
       required this.enablesuggestions,

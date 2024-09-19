@@ -41,7 +41,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   children: [
                     GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, 'bottomnavscreen');
+                          Navigator.restorablePushReplacementNamed(
+                              context, 'bottomnavscreen');
                         },
                         child: const Icon(Icons.arrow_back_ios_new_rounded)),
                     const ImageIcon(

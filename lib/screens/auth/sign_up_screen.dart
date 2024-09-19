@@ -11,6 +11,9 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+  final confirmpasswordcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,41 +42,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.person_4_rounded),
-                    hintText: 'Username or Email',
-                    hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                    contentPadding: EdgeInsets.all(20),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 251, 248, 248),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.pinkAccent)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.grey)),
-                  ),
-                ),
+                MyTextfield(
+                    keyboardtype: TextInputType.emailAddress,
+                    autoCorrect: true,
+                    enablesuggestions: true,
+                    controller: emailcontroller,
+                    hintText: 'enter username or email',
+                    prefixIcon: const Icon(Icons.person_4),
+                    obscureText: false),
                 const SizedBox(
                   height: 24,
                 ),
-                const MyTextfield(
+                MyTextfield(
+                    controller: passwordcontroller,
                     autoCorrect: false,
                     enablesuggestions: false,
                     hintText: 'enter password',
-                    prefixIcon: Icon(Icons.lock_rounded),
-                    suffixIcon: Icon(Icons.remove_red_eye),
+                    prefixIcon: const Icon(Icons.lock_rounded),
+                    suffixIcon: const Icon(Icons.remove_red_eye),
                     obscureText: true),
                 const SizedBox(
                   height: 24,
                 ),
-                const MyTextfield(
+                MyTextfield(
+                    controller: confirmpasswordcontroller,
                     autoCorrect: false,
                     enablesuggestions: false,
                     hintText: 'confirm password',
-                    prefixIcon: (child: Icon(Icons.lock_rounded)),
-                    suffixIcon: Icon(Icons.remove_red_eye),
+                    prefixIcon: const Icon(Icons.lock_rounded),
+                    suffixIcon: const Icon(Icons.remove_red_eye),
                     obscureText: true),
                 const SizedBox(
                   height: 15,
