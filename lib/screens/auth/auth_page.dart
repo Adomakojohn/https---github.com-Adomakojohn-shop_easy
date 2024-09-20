@@ -1,6 +1,5 @@
 import 'package:ecommerce_project/screens/auth/login_screen.dart';
 import 'package:ecommerce_project/screens/bottom_nav_screen.dart';
-import 'package:ecommerce_project/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

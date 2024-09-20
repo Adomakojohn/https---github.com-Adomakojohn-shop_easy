@@ -1,6 +1,7 @@
 import 'package:ecommerce_project/widgets/containers.dart';
 import 'package:ecommerce_project/widgets/mytextfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -14,12 +15,10 @@ class _LogInScreenState extends State<LogInScreen> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   void signUserIN() async {
-    showDialog(
+    showCupertinoDialog(
       context: context,
       builder: (context) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return const Center(child: CircularProgressIndicator());
       },
     );
     await FirebaseAuth.instance.signInWithEmailAndPassword(
