@@ -14,16 +14,32 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
-  void signUserIN() async {
+  void signUserIn() async {
     showCupertinoDialog(
       context: context,
       builder: (context) {
         return const Center(child: CircularProgressIndicator());
       },
     );
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailcontroller.text,
-      password: passwordcontroller.text,
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailcontroller.text,
+        password: passwordcontroller.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      errorMessage(e.code);
+    }
+  }
+
+  void errorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(message),
+        );
+      },
     );
     Navigator.pop(context);
   }
@@ -91,7 +107,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 Center(
                   child: GestureDetector(
-                    onTap: signUserIN,
+                    onTap: signUserIn,
                     child: Container(
                       alignment: Alignment.center,
                       height: 75,

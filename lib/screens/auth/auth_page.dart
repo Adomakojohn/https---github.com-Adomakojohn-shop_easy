@@ -1,4 +1,4 @@
-import 'package:ecommerce_project/screens/auth/login_screen.dart';
+import 'package:ecommerce_project/screens/auth/sign_up_screen.dart';
 import 'package:ecommerce_project/screens/bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -15,7 +15,7 @@ class AuthPage extends StatelessWidget {
           if (snapshot.hasData) {
             return const BottomNavBar();
           } else {
-            return const LogInScreen();
+            return const SignUpScreen();
           }
         },
       ),

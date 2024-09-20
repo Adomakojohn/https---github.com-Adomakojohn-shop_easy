@@ -185,7 +185,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
                       return GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            'cartscreen',
+                          );
+                        },
                         child: Column(
                           children: [
                             Container(

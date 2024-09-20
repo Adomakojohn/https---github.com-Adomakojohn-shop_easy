@@ -1,4 +1,6 @@
 import 'package:ecommerce_project/widgets/containers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/mytextfield.dart';
@@ -14,6 +16,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   final confirmpasswordcontroller = TextEditingController();
+  void signUserUp() async {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+    try {
+      if (passwordcontroller.text == confirmpasswordcontroller.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailcontroller.text,
+          password: passwordcontroller.text,
+        );
+      } else {
+        errorMessage("Password's don't match !");
+      }
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      errorMessage(e.code);
+    }
+  }
+
+  void errorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(message),
+        );
+      },
+    );
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,8 +124,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Center(
                   child: GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, 'bottomnavscreen'),
+                    onTap: signUserUp,
                     child: Container(
                       alignment: Alignment.center,
                       height: 75,
@@ -170,7 +206,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyle(fontSize: 17),
                     ),
                     GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, 'signupscreen'),
+                      onTap: () => Navigator.pushNamed(context, 'loginscreen'),
                       child: const Text(
                         "Log in",
                         style:

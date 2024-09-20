@@ -20,7 +20,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
         itemRating: "⭐⭐⭐⭐⭐"),
     DealsModel(
         imagePath: "assets/images/productitem2.png",
-        itemName: "Women printed kurta",
+        itemName: "Nike Sneaker",
         itemInfo: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
         itemPrice: "\$260",
         itemRating: "⭐⭐⭐⭐"),
@@ -40,15 +40,26 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                        onTap: () {
-                          Navigator.restorablePushReplacementNamed(
-                              context, 'bottomnavscreen');
-                        },
-                        child: const Icon(Icons.arrow_back_ios_new_rounded)),
-                    const ImageIcon(
-                      AssetImage('assets/icons/Cart.png'),
-                      color: Colors.black87,
-                      size: 35,
+                      onTap: () {
+                        Navigator.restorablePushReplacementNamed(
+                            context, 'bottomnavscreen');
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          'cartscreen',
+                        );
+                      },
+                      child: const ImageIcon(
+                        AssetImage('assets/icons/Cart.png'),
+                        color: Colors.black87,
+                        size: 35,
+                      ),
                     )
                   ],
                 ),
@@ -100,7 +111,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       style: TextStyle(fontSize: 22),
                     ),
                     SizedBox(
-                      width: 100,
+                      width: 80,
                     ),
                     Text(
                       '\$400',
@@ -149,10 +160,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                       ),
                     ),
                     Container(
+                      alignment: Alignment.center,
                       height: 55,
                       width: 170,
                       decoration: const BoxDecoration(
-                        color: Colors.white,
+                        color: Colors.pinkAccent,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         border: Border(
                           bottom: BorderSide(color: Colors.grey),
@@ -161,7 +173,10 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                           left: BorderSide(color: Colors.grey),
                         ),
                       ),
-                      child: const Text(''),
+                      child: const Text(
+                        'Add to wishlist',
+                        style: TextStyle(fontSize: 22, color: Colors.white),
+                      ),
                     ),
                   ],
                 ),
