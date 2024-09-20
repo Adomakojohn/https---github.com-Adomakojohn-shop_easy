@@ -1,5 +1,6 @@
 import 'package:ecommerce_project/widgets/containers.dart';
 import 'package:ecommerce_project/widgets/mytextfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -12,6 +13,13 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
+  void signUserIN() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailcontroller.text,
+      password: passwordcontroller.text,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,8 +83,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 ),
                 Center(
                   child: GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, 'bottomnavscreen'),
+                    onTap: signUserIN,
                     child: Container(
                       alignment: Alignment.center,
                       height: 75,

@@ -1,16 +1,19 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:ecommerce_project/screens/auth/login_screen.dart';
+import 'package:ecommerce_project/screens/auth/auth_page.dart';
 import 'package:ecommerce_project/screens/auth/sign_up_screen.dart';
 import 'package:ecommerce_project/screens/bottom_nav_screen.dart';
 import 'package:ecommerce_project/screens/product_details.page.dart';
 import 'package:ecommerce_project/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerce_project/screens/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
-  runApp(DevicePreview(
-    builder: (context) => const MyApp(),
-  ));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,7 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const LogInScreen(),
+      home: const AuthPage(),
       routes: {
         'homescreen': (context) => const HomeScreen(),
         'settingscreen': (context) => const SettingsScreen(),
