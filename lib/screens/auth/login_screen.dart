@@ -14,10 +14,19 @@ class _LogInScreenState extends State<LogInScreen> {
   final emailcontroller = TextEditingController();
   final passwordcontroller = TextEditingController();
   void signUserIN() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
     await FirebaseAuth.instance.signInWithEmailAndPassword(
       email: emailcontroller.text,
       password: passwordcontroller.text,
     );
+    Navigator.pop(context);
   }
 
   @override
