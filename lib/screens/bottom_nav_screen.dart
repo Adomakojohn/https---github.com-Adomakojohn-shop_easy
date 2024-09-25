@@ -1,6 +1,6 @@
 import 'package:ecommerce_project/screens/home_screen.dart';
-import 'package:ecommerce_project/screens/product_details.page.dart';
 import 'package:ecommerce_project/screens/settings_screen.dart';
+import 'package:ecommerce_project/screens/product_pages/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -21,8 +21,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   final List<Widget> _pages = [
     const HomeScreen(),
-    const ProductDetailsPage(),
-    const SettingsScreen(),
+    const WishlistPage(),
     const SettingsScreen(),
     const SettingsScreen(),
   ];
@@ -33,7 +32,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
       extendBody: true,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            'cartscreen',
+          );
+        },
         tooltip: 'Shop',
         child: const Image(
           image: AssetImage("assets/icons/Cart.png"),

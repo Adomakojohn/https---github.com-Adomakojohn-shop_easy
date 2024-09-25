@@ -1,4 +1,6 @@
 import 'package:ecommerce_project/widgets/containers.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/mytextfield.dart';
@@ -11,13 +13,52 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final emailcontroller = TextEditingController();
+  final passwordcontroller = TextEditingController();
+  final confirmpasswordcontroller = TextEditingController();
+  void signUserUp() async {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return const Center(child: CircularProgressIndicator());
+      },
+    );
+    try {
+      if (passwordcontroller.text == confirmpasswordcontroller.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailcontroller.text,
+          password: passwordcontroller.text,
+        );
+      } else {
+        errorMessage("Password's don't match !");
+      }
+      Navigator.pop(context);
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      errorMessage(e.code);
+    }
+  }
+
+  void errorMessage(String message) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text(message),
+        );
+      },
+    );
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.only(left: 15, right: 15),
           child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,43 +78,37 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.person_4_rounded),
-                    hintText: 'Username or Email',
-                    hintStyle: TextStyle(fontStyle: FontStyle.italic),
-                    contentPadding: EdgeInsets.all(20),
-                    filled: true,
-                    fillColor: Color.fromARGB(255, 251, 248, 248),
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.pinkAccent)),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(12)),
-                        borderSide: BorderSide(color: Colors.grey)),
-                  ),
-                ),
+                MyTextfield(
+                    keyboardtype: TextInputType.emailAddress,
+                    autoCorrect: true,
+                    enablesuggestions: true,
+                    controller: emailcontroller,
+                    hintText: 'enter username or email',
+                    prefixIcon: const Icon(Icons.person_4),
+                    obscureText: false),
                 const SizedBox(
-                  height: 24,
+                  height: 15,
                 ),
-                const MyTextfield(
+                MyTextfield(
+                    controller: passwordcontroller,
                     autoCorrect: false,
                     enablesuggestions: false,
                     hintText: 'enter password',
-                    prefixIcon: Icon(Icons.lock_rounded),
-                    suffixIcon: Icon(Icons.remove_red_eye),
+                    prefixIcon: const Icon(Icons.lock_rounded),
+                    suffixIcon: const Icon(Icons.remove_red_eye),
                     obscureText: true),
                 const SizedBox(
-                  height: 24,
+                  height: 15,
                 ),
-                const MyTextfield(
+                MyTextfield(
+                    controller: confirmpasswordcontroller,
                     autoCorrect: false,
                     enablesuggestions: false,
                     hintText: 'confirm password',
-                    prefixIcon: (child: Icon(Icons.lock_rounded)),
-                    suffixIcon: Icon(Icons.remove_red_eye),
+                    prefixIcon: const Icon(Icons.lock_rounded),
+                    suffixIcon: const Icon(Icons.remove_red_eye),
                     obscureText: true),
                 const SizedBox(
                   height: 15,
@@ -86,12 +121,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
                 Center(
                   child: GestureDetector(
-                    onTap: () =>
-                        Navigator.pushNamed(context, 'bottomnavscreen'),
+                    onTap: signUserUp,
                     child: Container(
                       alignment: Alignment.center,
                       height: 75,
@@ -140,7 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -149,13 +183,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       containerImage: "assets/images/google_image.png",
                     ),
                     SizedBox(
-                      width: 25,
+                      width: 15,
                     ),
                     MyContainer(
                       containerImage: "assets/images/apple.png",
                     ),
                     SizedBox(
-                      width: 25,
+                      width: 15,
                     ),
                     MyContainer(
                       containerImage: "assets/images/facebook.png",
@@ -163,7 +197,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -173,7 +207,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyle(fontSize: 17),
                     ),
                     GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, 'signupscreen'),
+                      onTap: () => Navigator.pushNamed(context, 'loginscreen'),
                       child: const Text(
                         "Log in",
                         style:
