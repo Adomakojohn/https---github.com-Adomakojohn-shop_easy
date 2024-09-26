@@ -56,8 +56,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.only(left: 15, right: 15),
           child: SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,7 +78,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 MyTextfield(
                     keyboardtype: TextInputType.emailAddress,
@@ -88,7 +89,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     prefixIcon: const Icon(Icons.person_4),
                     obscureText: false),
                 const SizedBox(
-                  height: 24,
+                  height: 15,
                 ),
                 MyTextfield(
                     controller: passwordcontroller,
@@ -99,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     suffixIcon: const Icon(Icons.remove_red_eye),
                     obscureText: true),
                 const SizedBox(
-                  height: 24,
+                  height: 15,
                 ),
                 MyTextfield(
                     controller: confirmpasswordcontroller,
@@ -120,7 +121,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
                 Center(
                   child: GestureDetector(
@@ -173,7 +174,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -182,13 +183,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       containerImage: "assets/images/google_image.png",
                     ),
                     SizedBox(
-                      width: 25,
+                      width: 15,
                     ),
                     MyContainer(
                       containerImage: "assets/images/apple.png",
                     ),
                     SizedBox(
-                      width: 25,
+                      width: 15,
                     ),
                     MyContainer(
                       containerImage: "assets/images/facebook.png",
@@ -196,7 +197,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ],
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

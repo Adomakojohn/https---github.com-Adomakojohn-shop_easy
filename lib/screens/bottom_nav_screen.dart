@@ -1,6 +1,6 @@
 import 'package:ecommerce_project/screens/home_screen.dart';
 import 'package:ecommerce_project/screens/settings_screen.dart';
-import 'package:ecommerce_project/screens/wishlist_screen.dart';
+import 'package:ecommerce_project/screens/product_pages/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
