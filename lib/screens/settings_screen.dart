@@ -48,36 +48,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     fontWeight: FontWeight.w600,
                   ),
                 ),
-                const Card(
+                Card(
                   child: Padding(
-                    padding: EdgeInsets.only(left: 10, right: 10),
+                    padding: const EdgeInsets.only(left: 10, right: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Divider(),
-                        Text(
+                        const Text(
                           'Samuel Rice',
                           style: TextStyle(
                             fontSize: 19,
                           ),
                         ),
-                        Divider(),
-                        Text(
-                          'Password',
-                          style: TextStyle(
-                            fontSize: 19,
+                        const Divider(),
+                        GestureDetector(
+                          child: const Text(
+                            'Password',
+                            style: TextStyle(
+                              fontSize: 19,
+                            ),
                           ),
                         ),
-                        Divider(),
-                        Text(
+                        const Divider(),
+                        const Text(
                           'Change Avatar or profile picture',
                           style: TextStyle(
                             fontSize: 19,
                           ),
                         ),
-                        Divider(),
-                        Text(
+                        const Divider(),
+                        const Text(
                           'Account Details',
                           style: TextStyle(
                             fontSize: 19,

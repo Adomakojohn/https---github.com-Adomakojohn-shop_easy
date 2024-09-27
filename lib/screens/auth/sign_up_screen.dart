@@ -207,7 +207,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       style: TextStyle(fontSize: 17),
                     ),
                     GestureDetector(
-                      onTap: () => Navigator.pushNamed(context, 'loginscreen'),
+                      onTap: () => Navigator.pushReplacementNamed(
+                          context, 'loginscreen'),
                       child: const Text(
                         "Log in",
                         style:
