@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -8,6 +9,10 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  void signUserOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -113,6 +118,46 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   height: 20,
                 ),
                 GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      barrierDismissible: false,
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Confirm Logout'),
+                          content: const Text(
+                            'Are you sure you want to sign out?',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text(
+                                'Cancel',
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.grey[900]),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: const Text(
+                                'Log Out',
+                                style: TextStyle(
+                                  color: Colors.pinkAccent,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                                signUserOut();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
                   child: const Card(
                     surfaceTintColor: Colors.pinkAccent,
                     child: Padding(
