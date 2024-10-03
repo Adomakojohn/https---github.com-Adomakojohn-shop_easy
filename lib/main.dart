@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       themeMode: ThemeMode.system,
-      home: const OnboardingPage(),
+      home: const OnboardingScreen(),
       routes: {
         'homescreen': (context) => const HomeScreen(),
         'settingscreen': (context) => const SettingsScreen(),
